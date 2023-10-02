@@ -172,11 +172,11 @@ app.delete('/books/:id', (req, res) => {
   
   // route to get a book by id
   app.get('/formats/:id', (req, res) => {
-  Format.findByPk(req.params.id).then(book => {
-      if (!book) {
+  Format.findByPk(req.params.id).then(format => {
+      if (!format) {
           res.status (404).send('Book not found');
       } else {
-          res.json(book) ;
+          res.json(format) ;
       }
       }).catch(err => {
           res.status(500).send(err);
@@ -185,8 +185,8 @@ app.delete('/books/:id', (req, res) => {
   
   // route to create a new book
   app.post('/formats', (req, res) => {
-      Format.create(req.body).then(book => {
-      res.send (book)
+      Format.create(req.body).then(format => {
+      res.send (format)
       }).catch(err => {
       res.status(500).send(err);
       });
@@ -194,12 +194,12 @@ app.delete('/books/:id', (req, res) => {
       
       // route to update a book
   app.put('/formats/:id', (req, res) => {
-      Format.findByPk( req.params.id).then(book => {
-      if (!book) {
+      Format.findByPk( req.params.id).then(format => {
+      if (!format) {
           res.status(404).send('Book not found');
       } else {
-      book.update(req.body).then(() => {
-          res.send(book) ;
+      format.update(req.body).then(() => {
+          res.send(format) ;
       }).catch(err => {
           res.status(500).send(err);
       });
@@ -211,16 +211,16 @@ app.delete('/books/:id', (req, res) => {
   
   // route to delete a book
   app.delete('/formats/:id', (req, res) => {
-      Format.findByPk(req.params.id).then(book => {
-      if (!book) {
+      Format.findByPk(req.params.id).then(format => {
+      if (!format) {
           res.status(404).send('Book not found');
       } else {
-      book.destroy().then(() => {
+      format.destroy().then(() => {
           res.send({});
       }).catch(err => {
           res.status (500).send(err);
       });
-      }s
+      }
       }).catch(err => {
       res.status(500).send(err);
       });
