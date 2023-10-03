@@ -162,7 +162,7 @@ app.delete('/books/:id', (req, res) => {
 
 //Format
     // route to get all books
-    app.get('/format', (req, res) =>{
+    app.get('/formats', (req, res) =>{
       Format. findAll().then(format => {
           res. json(format) ;
       }).catch(err => {
